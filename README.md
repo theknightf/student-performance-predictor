@@ -102,19 +102,20 @@ npm run dev
 | GET | `/model-info` | Metrics and feature list |
 | POST | `/predict` | Student data in, predicted grade + top 5 factors out |
 
-## Deployment
+## Deployment (both parts on Vercel, free Hobby plan)
 
-**Backend on Render** (Railway is similar)
-1. Push this repo to GitHub.
-2. Render: New > Web Service, pick the repo, set **Root Directory** to `backend`, **Runtime** to Docker.
-3. Deploy and copy the URL, e.g. `https://my-api.onrender.com`.
+Live demo: https://student-performance-predictor-seven-kappa.vercel.app (backend: https://spp-api-drab.vercel.app, docs at `/docs`)
 
-**Frontend on Vercel**
-1. Vercel: New Project, pick the repo, set **Root Directory** to `frontend`.
-2. Add the environment variable `NEXT_PUBLIC_API_URL` = your Render URL.
-3. Deploy.
+The repo has two folders, so create **two Vercel projects** from the same GitHub repo:
 
-Note: CORS currently allows all origins (`*`) to keep things simple. For production, restrict `allow_origins` in `backend/main.py` to your Vercel URL. Free Render services sleep when idle, so the first request can be slow.
+1. **Backend:** New Project > import the repo > choose the `backend` folder (FastAPI preset). Deploy, then open `/health` to check it.
+2. **Frontend:** New Project > import the same repo > choose the `frontend` folder (Next.js preset). Set `NEXT_PUBLIC_API_URL` to the backend URL (in `frontend/lib.js` the deployed backend is also the default). Deploy.
+
+Notes:
+- The model is loaded on the first request, so the first call after a quiet period can take a few seconds.
+- On the Hobby plan, Vercel only deploys commits whose author is the account owner (use your own git identity).
+- CORS allows all origins (`*`) to keep things simple. For production, restrict `allow_origins` in `backend/main.py` to your frontend URL.
+- Render and Hugging Face Docker Spaces also work for the backend (the `Dockerfile` is included), but both asked for a card or a paid plan when I tried.
 
 ## Tech stack
 
