@@ -1,6 +1,5 @@
 """FastAPI backend: serves the trained student-grade model."""
 import json
-from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Literal
 
@@ -12,7 +11,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 MODEL_DIR = Path(__file__).parent / "model"
-state = {}  # holds the model, loaded once at startup
+state = {}  # holds the model, loaded once and reused
 
 YesNo = Literal["yes", "no"]
 
@@ -49,19 +48,18 @@ class StudentInput(BaseModel):
     absences: int = Field(4, ge=0, le=93)
 
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    # Load the model once, not on every request
-    pipe = joblib.load(MODEL_DIR / "model.joblib")
-    state["pipe"] = pipe
-    state["metrics"] = json.loads((MODEL_DIR / "metrics.json").read_text())
-    state["explainer"] = shap.TreeExplainer(pipe.named_steps["model"])
-    state["columns"] = [f["name"] for f in state["metrics"]["features"]]
-    yield
-    state.clear()
+def load_model():
+    """Load the model once (on the first request) and keep it in memory."""
+    if "pipe" not in state:
+        pipe = joblib.load(MODEL_DIR / "model.joblib")
+        state["metrics"] = json.loads((MODEL_DIR / "metrics.json").read_text())
+        state["explainer"] = shap.TreeExplainer(pipe.named_steps["model"])
+        state["columns"] = [f["name"] for f in state["metrics"]["features"]]
+        state["pipe"] = pipe
+    return state
 
 
-app = FastAPI(title="Student Performance Predictor", lifespan=lifespan)
+app = FastAPI(title="Student Performance Predictor")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
 
@@ -81,7 +79,7 @@ def health():
 
 @app.get("/model-info")
 def model_info():
-    m = state["metrics"]
+    m = load_model()["metrics"]
     return {
         "best_model": m["best_model"],
         "best_scores": m["best_scores"],
@@ -93,6 +91,7 @@ def model_info():
 
 @app.post("/predict")
 def predict(student: StudentInput):
+    load_model()
     row = pd.DataFrame([student.model_dump()])
     pipe = state["pipe"]
     prediction = float(pipe.predict(row)[0])
