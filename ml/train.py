@@ -40,7 +40,7 @@ CATEGORICAL = ["school", "sex", "address", "famsize", "Pstatus", "Mjob", "Fjob",
                "reason", "guardian", "schoolsup", "famsup", "paid", "activities",
                "nursery", "higher", "internet", "romantic"]
 NUMERIC = ["age", "Medu", "Fedu", "traveltime", "studytime", "failures", "famrel",
-           "freetime", "goout", "Dalc", "Walc", "health", "absences"]
+           "freetime", "goout", "health", "absences"]
 
 
 def load_data():

@@ -45,8 +45,6 @@ class StudentInput(BaseModel):
     famrel: int = Field(4, ge=1, le=5)
     freetime: int = Field(3, ge=1, le=5)
     goout: int = Field(3, ge=1, le=5)
-    Dalc: int = Field(1, ge=1, le=5, description="Workday alcohol 1-5")
-    Walc: int = Field(1, ge=1, le=5, description="Weekend alcohol 1-5")
     health: int = Field(3, ge=1, le=5)
     absences: int = Field(4, ge=0, le=93)
 

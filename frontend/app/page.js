@@ -9,7 +9,7 @@ const DEFAULTS = {
   Medu: 2, Fedu: 2, Mjob: "other", Fjob: "other", reason: "course", guardian: "mother",
   traveltime: 1, studytime: 2, failures: 0, schoolsup: "no", famsup: "yes", paid: "no",
   activities: "no", nursery: "yes", higher: "yes", internet: "yes", romantic: "no",
-  famrel: 4, freetime: 3, goout: 3, Dalc: 1, Walc: 1, health: 3, absences: 4,
+  famrel: 4, freetime: 3, goout: 3, health: 3, absences: 4,
 };
 
 const EDU = ["None", "Primary", "5th-9th grade", "Secondary", "Higher"];
@@ -17,8 +17,8 @@ const EDU = ["None", "Primary", "5th-9th grade", "Secondary", "Higher"];
 // Friendly names for the chart
 const LABELS = {
   studytime: "Study time", failures: "Past failures", absences: "Absences", higher: "Wants higher education",
-  Medu: "Mother's education", Fedu: "Father's education", internet: "Internet access", Dalc: "Weekday alcohol",
-  Walc: "Weekend alcohol", goout: "Going out", age: "Age", health: "Health", famrel: "Family relations",
+  Medu: "Mother's education", Fedu: "Father's education", internet: "Internet access",
+  goout: "Going out", age: "Age", health: "Health", famrel: "Family relations",
   freetime: "Free time", schoolsup: "School support", famsup: "Family support", paid: "Paid classes",
   activities: "Activities", romantic: "Relationship", school: "School", sex: "Sex", address: "Address",
   Mjob: "Mother's job", Fjob: "Father's job", reason: "School reason", guardian: "Guardian",
@@ -104,8 +104,6 @@ export default function Home() {
           <Slider label="Absences" name="absences" min={0} max={40} {...p} />
           <Slider label="Going out (1-5)" name="goout" min={1} max={5} {...p} />
           <Slider label="Free time (1-5)" name="freetime" min={1} max={5} {...p} />
-          <Slider label="Weekday alcohol (1-5)" name="Dalc" min={1} max={5} {...p} />
-          <Slider label="Weekend alcohol (1-5)" name="Walc" min={1} max={5} {...p} />
           <Slider label="Health (1-5)" name="health" min={1} max={5} {...p} />
           <Slider label="Family relations (1-5)" name="famrel" min={1} max={5} {...p} />
         </div>
