@@ -1,0 +1,274 @@
+{
+  "best_model": "Random Forest",
+  "best_scores": {
+    "cv_rmse": 3.8758010592536962,
+    "rmse": 3.7649327811655278,
+    "mae": 3.010253164556962,
+    "r2": 0.30872049884176056
+  },
+  "early": {
+    "Linear Regression": {
+      "cv_rmse": 4.698963853517487,
+      "rmse": 4.1956808027213786,
+      "mae": 3.39526092580192,
+      "r2": 0.14149247411195787
+    },
+    "Random Forest": {
+      "cv_rmse": 3.8758010592536962,
+      "rmse": 3.7649327811655278,
+      "mae": 3.010253164556962,
+      "r2": 0.30872049884176056
+    },
+    "XGBoost": {
+      "cv_rmse": 3.940262699127197,
+      "rmse": 4.100799315157151,
+      "mae": 3.3523757457733154,
+      "r2": 0.17988228797912598
+    }
+  },
+  "full": {
+    "Linear Regression": {
+      "cv_rmse": 1.8952377817044403,
+      "rmse": 2.3512100854889333,
+      "mae": 1.597583363350034,
+      "r2": 0.7303986285018556
+    },
+    "Random Forest": {
+      "cv_rmse": 1.396893732234053,
+      "rmse": 2.0088270398293044,
+      "mae": 1.2137974683544304,
+      "r2": 0.8032003524208421
+    },
+    "XGBoost": {
+      "cv_rmse": 1.4250282406806947,
+      "rmse": 1.9896173391049081,
+      "mae": 1.1889946460723877,
+      "r2": 0.8069462180137634
+    }
+  },
+  "features": [
+    {
+      "name": "school",
+      "type": "category",
+      "options": [
+        "GP",
+        "MS"
+      ]
+    },
+    {
+      "name": "sex",
+      "type": "category",
+      "options": [
+        "F",
+        "M"
+      ]
+    },
+    {
+      "name": "address",
+      "type": "category",
+      "options": [
+        "R",
+        "U"
+      ]
+    },
+    {
+      "name": "famsize",
+      "type": "category",
+      "options": [
+        "GT3",
+        "LE3"
+      ]
+    },
+    {
+      "name": "Pstatus",
+      "type": "category",
+      "options": [
+        "A",
+        "T"
+      ]
+    },
+    {
+      "name": "Mjob",
+      "type": "category",
+      "options": [
+        "at_home",
+        "health",
+        "other",
+        "services",
+        "teacher"
+      ]
+    },
+    {
+      "name": "Fjob",
+      "type": "category",
+      "options": [
+        "at_home",
+        "health",
+        "other",
+        "services",
+        "teacher"
+      ]
+    },
+    {
+      "name": "reason",
+      "type": "category",
+      "options": [
+        "course",
+        "home",
+        "other",
+        "reputation"
+      ]
+    },
+    {
+      "name": "guardian",
+      "type": "category",
+      "options": [
+        "father",
+        "mother",
+        "other"
+      ]
+    },
+    {
+      "name": "schoolsup",
+      "type": "category",
+      "options": [
+        "no",
+        "yes"
+      ]
+    },
+    {
+      "name": "famsup",
+      "type": "category",
+      "options": [
+        "no",
+        "yes"
+      ]
+    },
+    {
+      "name": "paid",
+      "type": "category",
+      "options": [
+        "no",
+        "yes"
+      ]
+    },
+    {
+      "name": "activities",
+      "type": "category",
+      "options": [
+        "no",
+        "yes"
+      ]
+    },
+    {
+      "name": "nursery",
+      "type": "category",
+      "options": [
+        "no",
+        "yes"
+      ]
+    },
+    {
+      "name": "higher",
+      "type": "category",
+      "options": [
+        "no",
+        "yes"
+      ]
+    },
+    {
+      "name": "internet",
+      "type": "category",
+      "options": [
+        "no",
+        "yes"
+      ]
+    },
+    {
+      "name": "romantic",
+      "type": "category",
+      "options": [
+        "no",
+        "yes"
+      ]
+    },
+    {
+      "name": "age",
+      "type": "number",
+      "min": 15,
+      "max": 22
+    },
+    {
+      "name": "Medu",
+      "type": "number",
+      "min": 0,
+      "max": 4
+    },
+    {
+      "name": "Fedu",
+      "type": "number",
+      "min": 0,
+      "max": 4
+    },
+    {
+      "name": "traveltime",
+      "type": "number",
+      "min": 1,
+      "max": 4
+    },
+    {
+      "name": "studytime",
+      "type": "number",
+      "min": 1,
+      "max": 4
+    },
+    {
+      "name": "failures",
+      "type": "number",
+      "min": 0,
+      "max": 3
+    },
+    {
+      "name": "famrel",
+      "type": "number",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "name": "freetime",
+      "type": "number",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "name": "goout",
+      "type": "number",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "name": "Dalc",
+      "type": "number",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "name": "Walc",
+      "type": "number",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "name": "health",
+      "type": "number",
+      "min": 1,
+      "max": 5
+    },
+    {
+      "name": "absences",
+      "type": "number",
+      "min": 0,
+      "max": 75
+    }
+  ]
+}
